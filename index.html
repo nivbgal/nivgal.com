@@ -1155,7 +1155,7 @@
       overflow: hidden;
       border: 1px solid var(--line);
       background: #0d0d2b;
-      height: clamp(400px, 60vh, 620px);
+      height: clamp(460px, 65vh, 680px);
     }
 
     .game-frame {
@@ -1391,13 +1391,29 @@
         display: grid;
       }
 
-      .game-frame-wrap {
-        height: clamp(320px, 70vh, 500px);
-        border-radius: 6px;
+      /* On mobile: break the card padding and let the game fill the screen */
+      .coding-card {
+        padding: 0;
+        border-radius: var(--radius);
+        overflow: hidden;
       }
 
-      .coding-card {
-        padding: 16px;
+      .coding-card-top,
+      .coding-desc,
+      .coding-card-footer {
+        padding: 14px 16px;
+      }
+
+      .coding-card-top {
+        padding-bottom: 0;
+      }
+
+      .game-frame-wrap {
+        height: 100svh;
+        max-height: 600px;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
       }
     }
 
