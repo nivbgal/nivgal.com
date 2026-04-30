@@ -1155,7 +1155,7 @@
       overflow: hidden;
       border: 1px solid var(--line);
       background: #0d0d2b;
-      height: 560px;
+      height: clamp(400px, 60vh, 620px);
     }
 
     .game-frame {
@@ -1389,6 +1389,15 @@
       .site-footer {
         width: min(100% - 20px, 1180px);
         display: grid;
+      }
+
+      .game-frame-wrap {
+        height: clamp(320px, 70vh, 500px);
+        border-radius: 6px;
+      }
+
+      .coding-card {
+        padding: 16px;
       }
     }
 
@@ -1823,7 +1832,8 @@
               class="game-frame"
               loading="lazy"
               allow="autoplay"
-              sandbox="allow-scripts allow-same-origin"
+              sandbox="allow-scripts allow-same-origin allow-pointer-lock"
+              style="touch-action: none;"
             ></iframe>
           </div>
           <footer class="coding-card-footer">
