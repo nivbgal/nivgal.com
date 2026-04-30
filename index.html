@@ -359,6 +359,27 @@
       color: var(--ink);
     }
 
+    .story-link {
+      display: inline;
+      border: 0;
+      border-bottom: 2px solid color-mix(in srgb, var(--brand) 42%, transparent);
+      padding: 0 2px 1px;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      font-weight: inherit;
+      text-align: inherit;
+      transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .story-link:hover,
+    .story-link:focus-visible {
+      border-color: var(--brand);
+      background: color-mix(in srgb, var(--brand) 11%, transparent);
+      color: var(--brand-strong);
+      outline: none;
+    }
+
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
@@ -419,11 +440,27 @@
 
     .fact {
       min-height: 112px;
+      width: 100%;
       padding: 16px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--panel);
       backdrop-filter: blur(18px);
+      color: inherit;
+      text-align: left;
+      cursor: default;
+    }
+
+    button.fact {
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    button.fact:hover,
+    button.fact:focus-visible {
+      transform: translateY(-2px);
+      border-color: var(--brand);
+      outline: none;
     }
 
     .fact strong {
@@ -1052,6 +1089,48 @@
       transition: opacity 180ms ease, transform 180ms ease;
     }
 
+    .video-dialog {
+      width: min(920px, calc(100% - 24px));
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel-strong);
+      color: var(--ink);
+      box-shadow: 0 32px 120px rgba(0, 0, 0, 0.36);
+    }
+
+    .video-dialog::backdrop {
+      background: rgba(12, 16, 20, 0.68);
+      backdrop-filter: blur(8px);
+    }
+
+    .video-shell {
+      display: grid;
+      gap: 0;
+    }
+
+    .video-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .video-header h2 {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .video-frame {
+      width: 100%;
+      max-height: min(70vh, 680px);
+      background: #000000;
+      object-fit: contain;
+    }
+
     .toast.is-visible {
       transform: translate(-50%, 0);
       opacity: 1;
@@ -1314,7 +1393,7 @@
         <h1>Niv Gal</h1>
         <p class="hero-lede">
           I build playful systems that still have to work under real pressure:
-          <strong>live sports interactions, game economies, operational workflows, and engineering projects</strong>
+          <strong><button class="story-link" type="button" data-video-trigger>live sports interactions</button>, game economies, operational workflows, and engineering projects</strong>
           that move from messy idea to deployed experience.
         </p>
 
@@ -1334,9 +1413,11 @@
         </div>
 
         <ul class="quick-facts">
-          <li class="fact">
-            <strong>Live</strong>
-            <span>Second-screen sports activations and FanZone mechanics</span>
+          <li>
+            <button class="fact" type="button" data-video-trigger>
+              <strong>Live</strong>
+              <span>Second-screen sports activations and FanZone mechanics</span>
+            </button>
           </li>
           <li class="fact">
             <strong>Days</strong>
@@ -1430,9 +1511,9 @@
               <span class="date-chip">Aug 2025 - Present</span>
             </div>
             <ul class="impact-list">
-              <li>Led the pitch and launch of a scalable plug-and-play minigame engine for DAZN FanZone.</li>
-              <li>Helped move interactive second-screen experiences from long build cycles toward deployment in days.</li>
-              <li>Debuted a drag-and-drop Play/Bench/Cut experience sponsored by Lieferando during a UEFA Champions League match.</li>
+              <li>Led the pitch and launch of a <button class="story-link" type="button" data-video-trigger>scalable plug-and-play minigame engine</button> for DAZN FanZone.</li>
+              <li>Helped move <button class="story-link" type="button" data-video-trigger>interactive second-screen experiences</button> from long build cycles toward deployment in days.</li>
+              <li>Debuted a drag-and-drop <button class="story-link" type="button" data-video-trigger>Play/Bench/Cut experience sponsored by Lieferando</button> during a UEFA Champions League match.</li>
               <li>Worked on engagement mechanics designed for large, live, time-sensitive audiences.</li>
             </ul>
           </article>
@@ -1647,6 +1728,20 @@
     <span>Static, fast, and GitHub Pages-friendly.</span>
   </footer>
 
+  <dialog class="video-dialog print-hide" id="impactVideoDialog" aria-labelledby="impactVideoTitle">
+    <div class="video-shell">
+      <div class="video-header">
+        <h2 id="impactVideoTitle">Second-screen sports activation demo</h2>
+        <button class="icon-button" type="button" id="closeImpactVideo" aria-label="Close video">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <video class="video-frame" id="impactVideo" controls playsinline preload="metadata">
+        <source src="assets/second-screen-demo.mp4" type="video/mp4">
+      </video>
+    </div>
+  </dialog>
+
   <div class="toast" id="toast" role="status" aria-live="polite">Copied nivgal.com</div>
 
   <script>
@@ -1704,6 +1799,36 @@
         event.currentTarget.hidden = true;
         document.getElementById("profileFallback").hidden = false;
       });
+
+      const videoDialog = document.getElementById("impactVideoDialog");
+      const impactVideo = document.getElementById("impactVideo");
+      const openImpactVideo = () => {
+        if (typeof videoDialog.showModal === "function") {
+          videoDialog.showModal();
+        } else {
+          videoDialog.setAttribute("open", "");
+        }
+        impactVideo.play().catch(() => {});
+      };
+      const closeImpactVideo = () => {
+        impactVideo.pause();
+        if (videoDialog.open) {
+          videoDialog.close();
+        } else {
+          videoDialog.removeAttribute("open");
+        }
+      };
+
+      document.querySelectorAll("[data-video-trigger]").forEach((trigger) => {
+        trigger.addEventListener("click", openImpactVideo);
+      });
+      document.getElementById("closeImpactVideo").addEventListener("click", closeImpactVideo);
+      videoDialog.addEventListener("click", (event) => {
+        if (event.target === videoDialog) {
+          closeImpactVideo();
+        }
+      });
+      videoDialog.addEventListener("close", () => impactVideo.pause());
 
       const routeSearch = document.getElementById("routeSearch");
       const routes = Array.from(document.querySelectorAll("#miniRoutes [data-route-name]"));

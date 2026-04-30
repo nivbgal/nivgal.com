@@ -8,6 +8,7 @@ Standalone static site for GitHub Pages.
 - `resume/index.html` - a clean `/resume/` route that redirects to the resume section.
 - `assets/nivgal-consultations-logo.png` - local logo asset used in the header.
 - `assets/profile.jpg` - profile photo used in the hero card.
+- `assets/second-screen-demo.mp4` - demo video opened from the second-screen sports and Lieferando experience references.
 - `CNAME` - custom domain file for `nivgal.com`.
 - `.nojekyll` - tells GitHub Pages to serve the static files directly.
 - `404.html` - lightweight fallback page for unknown routes.
