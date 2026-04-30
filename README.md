@@ -14,11 +14,38 @@ Standalone static site for GitHub Pages.
 
 ## Publish on GitHub Pages
 
-1. Create a new GitHub repository for this folder.
-2. Put these files at the repository root.
-3. In repository settings, enable GitHub Pages from the default branch root.
-4. Set the custom domain to `nivgal.com`.
-5. Point your DNS at GitHub Pages and enable HTTPS once GitHub finishes provisioning the certificate.
+The live repository is `nivbgal/nivgal.com`.
+
+GitHub Pages is configured to publish from:
+
+- Branch: `main`
+- Folder: `/`
+- Custom domain: `nivgal.com`
+
+## DNS Records
+
+At the DNS provider for `nivgal.com`, add these records.
+
+For the apex/root domain:
+
+| Type | Name | Value |
+| --- | --- | --- |
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| AAAA | `@` | `2606:50c0:8000::153` |
+| AAAA | `@` | `2606:50c0:8001::153` |
+| AAAA | `@` | `2606:50c0:8002::153` |
+| AAAA | `@` | `2606:50c0:8003::153` |
+
+For `www`:
+
+| Type | Name | Value |
+| --- | --- | --- |
+| CNAME | `www` | `nivbgal.github.io` |
+
+After DNS propagates, return to GitHub Pages settings and enable HTTPS if GitHub has not enabled it automatically yet.
 
 ## Profile Photo
 
