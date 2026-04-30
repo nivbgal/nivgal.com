@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nivgal.com - Not found</title>
+  <style>
+    :root {
+      --bg: #f6f2e9;
+      --ink: #121417;
+      --muted: #5b626d;
+      --line: rgba(18, 20, 23, 0.13);
+      --brand: #0a7f82;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        linear-gradient(90deg, rgba(10, 127, 130, 0.08) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(47, 111, 228, 0.06) 1px, transparent 1px),
+        var(--bg);
+      background-size: 64px 64px;
+      color: var(--ink);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    main {
+      width: min(520px, 100%);
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 250, 241, 0.82);
+      box-shadow: 0 24px 80px rgba(33, 26, 14, 0.14);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.4rem, 12vw, 4.5rem);
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    a {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--bg);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--brand);
+      outline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>404</h1>
+    <p>This part of the utility belt is not live yet.</p>
+    <a href="/">Return home</a>
+  </main>
+</body>
+</html>
