@@ -361,6 +361,7 @@
 
     .story-link {
       display: inline;
+      appearance: none;
       border: 0;
       border-bottom: 2px solid color-mix(in srgb, var(--brand) 42%, transparent);
       padding: 0 2px 1px;
@@ -368,7 +369,12 @@
       color: inherit;
       cursor: pointer;
       font-weight: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      font-family: inherit;
       text-align: inherit;
+      white-space: normal;
+      overflow-wrap: anywhere;
       transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
     }
 
@@ -855,16 +861,20 @@
     }
 
     .impact-list li {
-      display: grid;
-      grid-template-columns: 18px minmax(0, 1fr);
-      gap: 8px;
+      position: relative;
+      display: block;
+      padding-left: 26px;
+      min-width: 0;
+      line-height: 1.55;
     }
 
     .impact-list li::before {
       content: "";
+      position: absolute;
+      left: 0;
+      top: 0.82em;
       width: 7px;
       height: 7px;
-      margin-top: 9px;
       border-radius: 999px;
       background: var(--accent, var(--brand));
     }
