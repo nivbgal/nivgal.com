@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101418">
-  <meta name="description" content="Niv Gal - engagement, economy, operations, and engineering-minded product work. Resume and personal hub for nivgal.com.">
+  <meta name="description" content="Niv Gal — product and engagement work across sports streaming, game economies, and operations. Resume and projects at nivgal.com.">
   <meta property="og:title" content="Niv Gal - Resume and Personal Hub">
-  <meta property="og:description" content="Engagement and economy consultant with a background in gamification, live sports experiences, operations, and engineering study.">
+  <meta property="og:description" content="Engagement and economy consultant — gamification, live sports, operations, and engineering.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nivgal.com">
   <title>Niv Gal - Resume and Personal Hub</title>
@@ -1081,6 +1081,121 @@
       font-weight: 700;
     }
 
+    /* ── Coding Projects ───────────────────────────── */
+    .coding-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .coding-card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at var(--mx, 60%) var(--my, 15%), color-mix(in srgb, var(--brand) 10%, transparent), transparent 28%),
+        var(--panel-strong);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .coding-card-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .coding-icon-tile {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--brand) 14%, transparent);
+      color: var(--brand);
+    }
+
+    .coding-icon-tile .lucide {
+      width: 22px;
+      height: 22px;
+    }
+
+    .coding-card h3 {
+      font-size: 1.05rem;
+      margin: 0 0 2px;
+    }
+
+    .coding-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .coding-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .game-frame-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: calc(var(--radius) - 2px);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #0d0d2b;
+      aspect-ratio: 4/3;
+    }
+
+    .game-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .coding-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .coding-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--brand);
+      background: color-mix(in srgb, var(--brand) 12%, transparent);
+      border-radius: 4px;
+      padding: 3px 8px;
+    }
+
+    .coding-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 140ms ease;
+    }
+
+    .coding-link:hover {
+      color: var(--ink);
+    }
+
+    .coding-link .lucide {
+      width: 15px;
+      height: 15px;
+    }
+
     .toast {
       position: fixed;
       left: 50%;
@@ -1380,6 +1495,7 @@
         <a href="/resume/"><i data-lucide="file-text" aria-hidden="true"></i>Resume</a>
         <a href="#experience"><i data-lucide="briefcase-business" aria-hidden="true"></i>Work</a>
         <a href="#skills"><i data-lucide="sparkles" aria-hidden="true"></i>Skills</a>
+        <a href="#coding"><i data-lucide="code-2" aria-hidden="true"></i>Projects</a>
         <a href="#routes"><i data-lucide="map" aria-hidden="true"></i>Hub</a>
       </div>
 
@@ -1402,9 +1518,9 @@
         <p class="eyebrow"><i data-lucide="radio-tower" aria-hidden="true"></i> Engagement, economy, operations, engineering</p>
         <h1>Niv Gal</h1>
         <p class="hero-lede">
-          I build playful systems that still have to work under real pressure:
-          <strong><button class="story-link" type="button" data-video-trigger>live sports interactions</button>, game economies, operational workflows, and engineering projects</strong>
-          that move from messy idea to deployed experience.
+          I build things that need to hold up under pressure:
+          <strong><button class="story-link" type="button" data-video-trigger>live sports interactions</button>, game economies, operational workflows, and side projects</strong>
+          — from rough concept to something real.
         </p>
 
         <div class="hero-actions">
@@ -1431,7 +1547,7 @@
           </li>
           <li class="fact">
             <strong>Days</strong>
-            <span>Deployment cycles designed to move faster than months</span>
+            <span>Deployment cycles, not months</span>
           </li>
           <li class="fact">
             <strong>B.E.</strong>
@@ -1449,10 +1565,10 @@
             </div>
             <div class="portrait-copy">
               <h2>Engagement and Economy Consultant</h2>
-              <p>SportsTech, gamification, monetization, operations, and engineering study.</p>
+              <p>SportsTech, gamification, monetization, and operations.</p>
             </div>
           </div>
-          <div class="availability">Based in Israel - open to sharp product, growth, and interactive experience work.</div>
+          <div class="availability">Based in Israel — open to product, growth, and interactive experience work.</div>
         </section>
 
         <section class="route-launcher interactive-card" aria-label="Site routes">
@@ -1465,6 +1581,11 @@
               <i data-lucide="file-text" aria-hidden="true"></i>
               <span><strong>Resume</strong><span>Career signal</span></span>
               <em class="route-state">Ready</em>
+            </a>
+            <a class="mini-route" href="#coding" data-route-name="coding projects flappy bird games side projects">
+              <i data-lucide="code-2" aria-hidden="true"></i>
+              <span><strong>Projects</strong><span>Side builds</span></span>
+              <em class="route-state">Live</em>
             </a>
             <div class="mini-route" aria-disabled="true" data-route-name="portfolio engineering afeka capstone solar water harvesting pcb">
               <i data-lucide="circuit-board" aria-hidden="true"></i>
@@ -1490,10 +1611,9 @@
   <main id="resume">
     <section class="content-band reveal is-visible" aria-labelledby="resume-title">
       <p class="section-kicker"><i data-lucide="file-user" aria-hidden="true"></i> Resume</p>
-      <h2 class="section-title" id="resume-title">A practical operator with product taste and technical range.</h2>
+      <h2 class="section-title" id="resume-title">Operator with product instincts and technical range.</h2>
       <p class="section-lede">
-        The through-line is turning fuzzy systems into things people can use: game economies, live engagement loops,
-        operational handoffs, digital growth, and increasingly hardware/software engineering work.
+        Game economies, live engagement loops, operational handoffs, and digital growth — with some hardware/software engineering on the side.
       </p>
 
       <div class="resume-layout">
@@ -1501,16 +1621,15 @@
           <section class="resume-card interactive-card">
           <h3><i data-lucide="user-round-check" aria-hidden="true"></i> Professional Summary</h3>
           <p class="summary-text">
-            Engagement and economy consultant with experience across mobile gaming, sports streaming, operations,
-            monetization, and digital growth. Comfortable moving between strategy and execution: pitching concepts,
-            structuring live engagement mechanics, coordinating cross-functional delivery, and making systems easier
-            to deploy again.
+            Engagement and economy consultant across mobile gaming, sports streaming, operations, and monetization.
+            I move between strategy and execution — pitching concepts, wiring up live engagement mechanics,
+            coordinating delivery, and making things easier to ship again next time.
           </p>
           </section>
 
           <section class="resume-card interactive-card" id="experience" aria-labelledby="experience-title">
         <h3 id="experience-title"><i data-lucide="briefcase-business" aria-hidden="true"></i> Experience</h3>
-        <p class="summary-text resume-card-lede">Work that sits between audience behavior, systems, and delivery.</p>
+        <p class="summary-text resume-card-lede">Audience behavior, systems, delivery — usually all three at once.</p>
         <div class="timeline">
           <article class="timeline-item accent-brand">
             <div class="timeline-head">
@@ -1522,9 +1641,9 @@
             </div>
             <ul class="impact-list">
               <li>Led the pitch and launch of a <button class="story-link" type="button" data-video-trigger>scalable plug-and-play minigame engine</button> for DAZN FanZone.</li>
-              <li>Helped move <button class="story-link" type="button" data-video-trigger>interactive second-screen experiences</button> from long build cycles toward deployment in days.</li>
+              <li>Cut <button class="story-link" type="button" data-video-trigger>second-screen experience</button> build cycles from months down to days.</li>
               <li>Debuted a drag-and-drop <button class="story-link" type="button" data-video-trigger>Play/Bench/Cut experience sponsored by Lieferando</button> during a UEFA Champions League match.</li>
-              <li>Worked on engagement mechanics designed for large, live, time-sensitive audiences.</li>
+              <li>Designed engagement mechanics for large live audiences with tight timing windows.</li>
             </ul>
           </article>
 
@@ -1537,7 +1656,7 @@
               <span class="date-chip">Oct 2023 - Present</span>
             </div>
             <ul class="impact-list">
-              <li>Oversee strategic growth initiatives, partnerships, and expansion efforts for the business.</li>
+              <li>Driving growth strategy, partnerships, and expansion.</li>
             </ul>
           </article>
 
@@ -1550,7 +1669,7 @@
               <span class="date-chip">Apr 2021 - Jan 2023</span>
             </div>
             <ul class="impact-list">
-              <li>Managed monetization strategies across mobile game economies and live operational rhythms.</li>
+              <li>Managed monetization across mobile game economies and live ops cadences.</li>
             </ul>
           </article>
 
@@ -1563,7 +1682,7 @@
               <span class="date-chip">Sep 2020 - Apr 2021</span>
             </div>
             <ul class="impact-list">
-              <li>Handled operational workflows and supported smooth deployment of mobile gaming events and features.</li>
+              <li>Ran operational workflows and supported deployment of mobile gaming events and features.</li>
             </ul>
           </article>
 
@@ -1577,7 +1696,7 @@
             </div>
             <ul class="impact-list">
               <li>Served as a first responder to cyber attacks targeting major enterprise customers.</li>
-              <li>Applied routing and switching knowledge to support secure, complex network environments.</li>
+              <li>Applied routing and switching skills to secure, complex network environments.</li>
             </ul>
           </article>
 
@@ -1667,12 +1786,51 @@
       </div>
     </section>
 
+    <section class="content-band reveal print-hide" id="coding" aria-labelledby="coding-title">
+      <p class="section-kicker"><i data-lucide="code-2" aria-hidden="true"></i> Coding Projects</p>
+      <h2 class="section-title" id="coding-title">Things built on the side.</h2>
+      <p class="section-lede">
+        Side projects, weekend experiments, and anything worth shipping. Click to play or explore.
+      </p>
+
+      <div class="coding-grid">
+        <article class="coding-card interactive-card">
+          <div class="coding-card-top">
+            <div class="coding-icon-tile">
+              <i data-lucide="bird" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h3>Flappy Bird</h3>
+              <p class="coding-meta">React &middot; Canvas &middot; TypeScript</p>
+            </div>
+          </div>
+          <p class="coding-desc">A Flappy Bird clone with coins, power-ups (magnet, rocket, x2), and particle effects. Runs in-browser.</p>
+          <div class="game-frame-wrap">
+            <iframe
+              src="/games/flappy-bird/"
+              title="Flappy Bird game"
+              class="game-frame"
+              loading="lazy"
+              allow="autoplay"
+              sandbox="allow-scripts allow-same-origin"
+            ></iframe>
+          </div>
+          <footer class="coding-card-footer">
+            <span class="coding-tag">Game</span>
+            <a href="https://github.com/nivbgal" target="_blank" rel="noreferrer" class="coding-link">
+              <i data-lucide="github" aria-hidden="true"></i> GitHub
+            </a>
+          </footer>
+        </article>
+      </div>
+    </section>
+
     <section class="content-band reveal print-hide" id="routes" aria-labelledby="routes-title">
       <p class="section-kicker"><i data-lucide="map" aria-hidden="true"></i> Modular base</p>
-      <h2 class="section-title" id="routes-title">The domain is ready to become a useful personal operating system.</h2>
+      <h2 class="section-title" id="routes-title">This domain has more room to grow.</h2>
       <p class="section-lede">
-        The current page is the public resume layer. The structure leaves clean lanes for future professional,
-        academic, utility, and private prototype pages without mixing audiences.
+        The resume is the public layer right now. The rest of the structure is ready for engineering work,
+        personal projects, prototypes, and anything else that earns its own page.
       </p>
 
       <div class="route-grid">
@@ -1686,28 +1844,28 @@
         <article class="surface-card interactive-card route-blue">
           <div class="icon-tile"><i data-lucide="circuit-board" aria-hidden="true"></i></div>
           <h3>Portfolio</h3>
-          <p>Future home for engineering work, capstone materials, schematics, decks, and system notes.</p>
+          <p>Engineering work, capstone materials, schematics, and system notes — coming once there's enough to show.</p>
           <footer><span>Academic</span><span>Next</span></footer>
         </article>
 
         <article class="surface-card interactive-card route-coral">
           <div class="icon-tile"><i data-lucide="utensils" aria-hidden="true"></i></div>
           <h3>Potluck</h3>
-          <p>Future RSVP and dish-claiming page, ready for an embedded form or a small backend later.</p>
+          <p>RSVP and dish-claiming for gatherings — simple form, maybe a small backend later.</p>
           <footer><span>Personal</span><span>Later</span></footer>
         </article>
 
         <article class="surface-card interactive-card route-gold">
           <div class="icon-tile"><i data-lucide="flask-conical" aria-hidden="true"></i></div>
           <h3>Lab</h3>
-          <p>A quiet place for prototypes, agentic workflows, API experiments, and unlisted demos.</p>
+          <p>Prototypes, API experiments, and unlisted demos — kept off the main path.</p>
           <footer><span>Private</span><span>Later</span></footer>
         </article>
 
         <article class="surface-card interactive-card route-violet">
           <div class="icon-tile"><i data-lucide="badge-check" aria-hidden="true"></i></div>
           <h3>Consulting</h3>
-          <p>A sharper services page can branch out when the work needs its own landing surface.</p>
+          <p>A focused services page, when the work warrants its own space.</p>
           <footer><span>Business</span><span>Optional</span></footer>
         </article>
       </div>
@@ -1716,8 +1874,8 @@
     <section class="content-band reveal print-hide" aria-label="Contact">
       <div class="contact-strip">
         <div>
-          <h2>Want the focused version?</h2>
-          <p>LinkedIn has the professional thread; this domain will hold the wider map.</p>
+          <h2>Want the structured version?</h2>
+          <p>LinkedIn has the professional thread. This site holds everything else.</p>
         </div>
         <div class="contact-actions">
           <a class="secondary-action" href="https://linkedin.com/in/niv-gal" target="_blank" rel="noreferrer">
@@ -1735,7 +1893,7 @@
 
   <footer class="site-footer print-hide">
     <span>nivgal.com</span>
-    <span>Static, fast, and GitHub Pages-friendly.</span>
+    <span>Static and fast. Hosted on GitHub Pages.</span>
   </footer>
 
   <dialog class="video-dialog print-hide" id="impactVideoDialog" aria-labelledby="impactVideoTitle">
