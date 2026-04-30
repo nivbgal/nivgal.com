@@ -1923,7 +1923,7 @@
     const root = document.documentElement;
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
     const storedTheme = localStorage.getItem("nivgal-theme");
-    root.dataset.theme = storedTheme || (prefersDark.matches ? "dark" : "light");
+    root.dataset.theme = storedTheme || "dark";
 
     const showToast = (message) => {
       const toast = document.getElementById("toast");
