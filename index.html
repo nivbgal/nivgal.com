@@ -241,7 +241,8 @@
       background: var(--ink);
       color: var(--bg);
       transform: translateY(-1px);
-      outline: none;
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
     }
 
     .nav-actions {
@@ -283,7 +284,8 @@
       border-color: color-mix(in srgb, var(--brand) 58%, var(--line));
       background: var(--ink);
       color: var(--bg);
-      outline: none;
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
     }
 
     .hero {
@@ -391,7 +393,8 @@
       border-color: var(--brand);
       background: color-mix(in srgb, var(--brand) 11%, transparent);
       color: var(--brand-strong);
-      outline: none;
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
     }
 
     .hero-actions {
@@ -433,7 +436,8 @@
     .secondary-action:hover,
     .secondary-action:focus-visible {
       transform: translateY(-2px);
-      outline: none;
+      outline: 2px solid var(--brand);
+      outline-offset: 3px;
     }
 
     .secondary-action:hover,
@@ -474,7 +478,8 @@
     button.fact:focus-visible {
       transform: translateY(-2px);
       border-color: var(--brand);
-      outline: none;
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
     }
 
     .fact strong {
@@ -642,7 +647,8 @@
     .mini-route:focus-visible {
       transform: translateX(3px);
       border-color: color-mix(in srgb, var(--brand) 58%, var(--line));
-      outline: none;
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
     }
 
     .mini-route[aria-disabled="true"] {
@@ -1163,6 +1169,9 @@
       height: 100%;
       border: none;
       display: block;
+      overflow: hidden;
+      touch-action: none;
+      -webkit-overflow-scrolling: auto;
     }
 
     .coding-card-footer {
@@ -1532,7 +1541,7 @@
       </div>
 
       <div class="nav-actions">
-        <button class="icon-button" type="button" id="themeToggle" aria-label="Toggle color theme" title="Toggle color theme">
+        <button class="icon-button" type="button" id="themeToggle" aria-label="Toggle color theme" aria-pressed="false" title="Toggle color theme">
           <i data-lucide="moon" aria-hidden="true"></i>
         </button>
         <button class="text-button" type="button" id="printButton" aria-label="Print or save resume as PDF">
@@ -1551,7 +1560,7 @@
         <h1>Niv Gal</h1>
         <p class="hero-lede">
           I build things that need to hold up under pressure:
-          <strong><button class="story-link" type="button" data-video-trigger>live sports interactions</button>, game economies, operational workflows, and side projects</strong>
+          <strong><button class="story-link" type="button" data-video-trigger aria-label="Watch demo: live sports interactions">live sports interactions</button>, game economies, operational workflows, and side projects</strong>
           from rough concept to something real.
         </p>
 
@@ -1564,7 +1573,7 @@
             <i data-lucide="linkedin" aria-hidden="true"></i>
             LinkedIn
           </a>
-          <button class="secondary-action print-hide" type="button" id="copyDomain">
+          <button class="secondary-action print-hide" type="button" id="copyDomain" aria-label="Copy website URL">
             <i data-lucide="copy" aria-hidden="true"></i>
             nivgal.com
           </button>
@@ -1572,7 +1581,7 @@
 
         <ul class="quick-facts">
           <li>
-            <button class="fact" type="button" data-video-trigger>
+            <button class="fact" type="button" data-video-trigger aria-label="Watch second-screen demo video">
               <strong>Live</strong>
               <span>Second-screen sports activations and FanZone mechanics</span>
             </button>
@@ -1606,7 +1615,7 @@
         <section class="route-launcher interactive-card" aria-label="Site routes">
           <label class="route-search">
             <i data-lucide="search" aria-hidden="true"></i>
-            <input id="routeSearch" type="search" placeholder="Search the hub" autocomplete="off">
+            <input id="routeSearch" type="search" placeholder="Search the hub" autocomplete="off" aria-label="Search site routes">
           </label>
           <div class="mini-routes" id="miniRoutes">
             <a class="mini-route" href="#resume" data-route-name="resume cv work experience skills">
@@ -1619,17 +1628,17 @@
               <span><strong>Projects</strong><span>Side builds</span></span>
               <em class="route-state">Live</em>
             </a>
-            <div class="mini-route" aria-disabled="true" data-route-name="portfolio engineering afeka capstone solar water harvesting pcb">
+            <div class="mini-route" aria-disabled="true" role="link" tabindex="-1" data-route-name="portfolio engineering afeka capstone solar water harvesting pcb">
               <i data-lucide="circuit-board" aria-hidden="true"></i>
               <span><strong>Portfolio</strong><span>Engineering archive</span></span>
               <em class="route-state">Next</em>
             </div>
-            <div class="mini-route" aria-disabled="true" data-route-name="potluck rsvp sourdough espresso friends">
+            <div class="mini-route" aria-disabled="true" role="link" tabindex="-1" data-route-name="potluck rsvp sourdough espresso friends">
               <i data-lucide="utensils" aria-hidden="true"></i>
               <span><strong>Potluck</strong><span>Personal logistics</span></span>
               <em class="route-state">Later</em>
             </div>
-            <div class="mini-route" aria-disabled="true" data-route-name="lab prototypes ai workflows api scripts">
+            <div class="mini-route" aria-disabled="true" role="link" tabindex="-1" data-route-name="lab prototypes ai workflows api scripts">
               <i data-lucide="flask-conical" aria-hidden="true"></i>
               <span><strong>Lab</strong><span>Prototype shelf</span></span>
               <em class="route-state">Private</em>
@@ -1672,9 +1681,9 @@
               <span class="date-chip">Aug 2025 - Present</span>
             </div>
             <ul class="impact-list">
-              <li>Led the pitch and launch of a <button class="story-link" type="button" data-video-trigger>scalable plug-and-play minigame engine</button> for DAZN FanZone.</li>
-              <li>Cut <button class="story-link" type="button" data-video-trigger>second-screen experience</button> build cycles from months down to days.</li>
-              <li>Debuted a drag-and-drop <button class="story-link" type="button" data-video-trigger>Play/Bench/Cut experience sponsored by Lieferando</button> during a UEFA Champions League match.</li>
+              <li>Led the pitch and launch of a <button class="story-link" type="button" data-video-trigger aria-label="Watch demo: scalable plug-and-play minigame engine">scalable plug-and-play minigame engine</button> for DAZN FanZone.</li>
+              <li>Cut <button class="story-link" type="button" data-video-trigger aria-label="Watch demo: second-screen experience">second-screen experience</button> build cycles from months down to days.</li>
+              <li>Debuted a drag-and-drop <button class="story-link" type="button" data-video-trigger aria-label="Watch demo: Play/Bench/Cut experience">Play/Bench/Cut experience sponsored by Lieferando</button> during a UEFA Champions League match.</li>
               <li>Designed engagement mechanics for large live audiences with tight timing windows.</li>
             </ul>
           </article>
@@ -1841,15 +1850,15 @@
             </div>
           </div>
           <p class="coding-desc">A Flappy Bird clone with coins, power-ups (magnet, rocket, x2), and particle effects. Runs in-browser.</p>
-          <div class="game-frame-wrap">
+          <div class="game-frame-wrap" role="region" aria-label="Flappy Bird game">
             <iframe
               src="/games/flappy-bird/"
               title="Flappy Bird game"
               class="game-frame"
               loading="lazy"
               allow="autoplay"
-              sandbox="allow-scripts allow-same-origin allow-pointer-lock"
-              style="touch-action: none;"
+              allowfullscreen
+              sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms"
             ></iframe>
           </div>
           <footer class="coding-card-footer">
@@ -1919,7 +1928,7 @@
             <i data-lucide="linkedin" aria-hidden="true"></i>
             LinkedIn
           </a>
-          <button class="secondary-action" type="button" id="copyDomainBottom">
+          <button class="secondary-action" type="button" id="copyDomainBottom" aria-label="Copy website URL">
             <i data-lucide="copy" aria-hidden="true"></i>
             Copy domain
           </button>
@@ -1941,8 +1950,9 @@
           <i data-lucide="x" aria-hidden="true"></i>
         </button>
       </div>
-      <video class="video-frame" id="impactVideo" controls playsinline preload="metadata">
+      <video class="video-frame" id="impactVideo" controls playsinline preload="metadata" aria-label="Second-screen sports activation demo video">
         <source src="assets/second-screen-demo.mp4" type="video/mp4">
+        <track kind="captions" src="assets/demo-captions.vtt" srclang="en" label="English captions" default>
       </video>
     </div>
   </dialog>
@@ -1976,8 +1986,9 @@
         const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
         root.dataset.theme = nextTheme;
         localStorage.setItem("nivgal-theme", nextTheme);
-        document.getElementById("themeToggle").innerHTML =
-          nextTheme === "dark" ? '<i data-lucide="sun" aria-hidden="true"></i>' : '<i data-lucide="moon" aria-hidden="true"></i>';
+        const btn = document.getElementById("themeToggle");
+        btn.setAttribute("aria-pressed", nextTheme === "dark" ? "true" : "false");
+        btn.innerHTML = nextTheme === "dark" ? '<i data-lucide="sun" aria-hidden="true"></i>' : '<i data-lucide="moon" aria-hidden="true"></i>';
         refreshIcons();
         drawStaticNetwork();
       });
