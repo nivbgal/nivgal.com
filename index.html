@@ -1979,8 +1979,25 @@
       }
     };
 
+    // On hard-refresh with a hash, the browser tries to scroll before paint.
+    // Temporarily disable scroll-behavior and snap to top, then re-scroll after paint.
+    if (window.location.hash) {
+      history.scrollRestoration = 'manual';
+      window.scrollTo(0, 0);
+    }
+
     window.addEventListener("DOMContentLoaded", () => {
       refreshIcons();
+
+      // After fonts + layout paint, scroll to hash target smoothly
+      if (window.location.hash) {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            const target = document.querySelector(window.location.hash);
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        });
+      }
 
       document.getElementById("themeToggle").addEventListener("click", () => {
         const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
@@ -1996,8 +2013,6 @@
       document.getElementById("themeToggle").innerHTML =
         root.dataset.theme === "dark" ? '<i data-lucide="sun" aria-hidden="true"></i>' : '<i data-lucide="moon" aria-hidden="true"></i>';
       refreshIcons();
-
-      document.getElementById("printButton").addEventListener("click", () => window.print());
 
       const copyDomain = async () => {
         try {
