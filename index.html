@@ -1852,10 +1852,9 @@
           <p class="coding-desc">A Flappy Bird clone with coins, power-ups (magnet, rocket, x2), and particle effects. Runs in-browser.</p>
           <div class="game-frame-wrap" role="region" aria-label="Flappy Bird game">
             <iframe
-              src="/games/flappy-bird/"
+              data-src="/games/flappy-bird/"
               title="Flappy Bird game"
               class="game-frame"
-              loading="lazy"
               allow="autoplay"
               allowfullscreen
               sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms"
@@ -2091,6 +2090,25 @@
       }, { threshold: 0.16 });
 
       document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
+
+      // Lazy-load the Flappy Bird iframe only when the coding section scrolls into view.
+      // Using data-src instead of src prevents the iframe from loading on page start,
+      // which avoids any focus/scroll side-effects that pull the viewport to #coding.
+      const lazyFrameObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const frame = entry.target.querySelector("iframe[data-src]");
+            if (frame) {
+              frame.src = frame.dataset.src;
+            }
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "200px" });
+
+      const codingSection = document.getElementById("coding");
+      if (codingSection) lazyFrameObserver.observe(codingSection);
+
       startNetwork();
     });
 
