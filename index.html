@@ -583,6 +583,7 @@
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
       height: clamp(440px, 60vh, 620px);
+      height: clamp(440px, 60dvh, 620px);
     }
     .frame-wrap iframe {
       width: 100%; height: 100%;
@@ -697,7 +698,7 @@
       border-bottom: 1px solid var(--line);
     }
     .video-head h2 { font-size: 1rem; font-weight: 800; }
-    #impactVideo { width: 100%; max-height: min(70vh, 640px); background: #000; display: block; }
+    #impactVideo { width: 100%; max-height: min(70vh, 640px); background: #000; display: block; touch-action: manipulation; }
 
     /* ── Toast ─────────────────────── */
     .toast {
@@ -839,6 +840,8 @@
       color: var(--ink);
       box-shadow: var(--shadow);
       overflow: hidden;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
     .pulse-dialog::backdrop {
       background: rgba(5, 8, 14, 0.72);
@@ -866,6 +869,7 @@
       border: 0;
       display: block;
       background: #0A0F1A;
+      touch-action: manipulation;
     }
 
     /* ── Responsive ─────────────────────── */
@@ -1033,7 +1037,7 @@
             Currently leading monetization &amp; CRM at a <em>mystery box startup in stealth</em>, consulting at <em>DAZN on FanZone minigames</em>, and previously owned monetization for <em>10M+ player</em> mobile titles at SuperPlay.
           </p>
           <div class="summary-side">
-            <p>At DAZN I pitched a plug-and-play minigame engine for FanZone and worked with product and engineering to take it live during Champions League. The goal was simple: ship interactive experiences in days, not months.</p>
+            <p>At DAZN I pitched a plug-and-play minigame engine for FanZone and worked with product and engineering to take it live during Champions League, then scaled it across the FIFA World Cup 2026 broadcasts, the biggest stage the engine has run on yet. The goal was simple: ship interactive experiences in days, not months.</p>
             <p>At SuperPlay I balanced economies and pricing across live titles with 10M+ players, working shoulder to shoulder with product and data. Before that: live-ops, network operations, and military intelligence.</p>
           </div>
         </div>
@@ -1068,6 +1072,7 @@
                 <li>Pitched a scalable, plug-and-play <button class="story-link" type="button" data-video-trigger>minigame engine</button> for DAZN FanZone and partnered with product and engineering to ship it.</li>
                 <li>Helped take the first live activation from concept through Champions League launch.</li>
                 <li>Debuted a drag-and-drop <button class="story-link" type="button" data-video-trigger>Play / Bench / Cut experience sponsored by Lieferando</button> during Bayern vs Real Madrid, with 750k+ fans playing live in FanZone.</li>
+                <li>Scaled the engine across the FIFA World Cup 2026 broadcasts, shipping new formats live in FanZone chat during the tournament: the <button class="story-link" type="button" data-video-trigger data-video-src="assets/worldcup-fanzone-2.mp4" data-video-poster="assets/worldcup-fanzone-2-poster.jpg" data-video-title="KEEP 1 fan-vote minigame, FIFA World Cup 2026">KEEP 1 fan-vote card game</button> and a <button class="story-link" type="button" data-video-trigger data-video-src="assets/worldcup-fanzone-1.mp4" data-video-poster="assets/worldcup-fanzone-1-poster.jpg" data-video-title="Starter / Sub / Benchwarmer minigame, FIFA World Cup 2026">Starter / Sub / Benchwarmer picker</button>.</li>
                 <li>Designed engagement mechanics for large live audiences with tight timing windows.</li>
               </ul>
             </div>
@@ -1280,9 +1285,9 @@
         <svg class="ico" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
     </div>
-    <video id="impactVideo" controls playsinline preload="metadata" aria-label="Second-screen sports activation demo video">
-      <source src="assets/second-screen-demo.mp4" type="video/mp4">
-      <track kind="captions" src="assets/demo-captions.vtt" srclang="en" label="English captions" default>
+    <video id="impactVideo" controls playsinline preload="auto" poster="assets/second-screen-demo-poster.jpg" aria-label="Second-screen sports activation demo video">
+      <source id="impactVideoSource" src="assets/second-screen-demo.mp4" type="video/mp4">
+      <track id="impactVideoTrack" kind="captions" src="assets/demo-captions.vtt" srclang="en" label="English captions" default>
     </video>
   </dialog>
 
@@ -1382,13 +1387,59 @@
           });
         }
 
-        // Video dialog
+        // Video dialog (supports multiple sources via data-video-src/title/poster)
         var dialog = document.getElementById("videoDialog");
         var video = document.getElementById("impactVideo");
-        function openVideo() {
+        var videoSourceEl = document.getElementById("impactVideoSource");
+        var videoTitleEl = document.getElementById("videoTitle");
+        var videoTrackEl = document.getElementById("impactVideoTrack");
+        var DEFAULT_VIDEO = {
+          src: "assets/second-screen-demo.mp4",
+          poster: "assets/second-screen-demo-poster.jpg",
+          title: "Second-screen sports activation demo",
+          captions: "assets/demo-captions.vtt"
+        };
+        var currentVideoSrc = null;
+
+        function loadVideo(cfg) {
+          if (currentVideoSrc === cfg.src) return;
+          currentVideoSrc = cfg.src;
+          video.pause();
+          video.poster = cfg.poster || "";
+          videoSourceEl.src = cfg.src;
+          if (videoTrackEl) videoTrackEl.src = cfg.captions || "";
+          videoTitleEl.textContent = cfg.title || DEFAULT_VIDEO.title;
+          video.load();
+        }
+
+        function playWhenReady() {
+          if (video.readyState >= 2) {
+            video.play().catch(function () {});
+            return;
+          }
+          var onReady = function () {
+            video.removeEventListener("canplay", onReady);
+            video.removeEventListener("loadeddata", onReady);
+            video.play().catch(function () {});
+          };
+          video.addEventListener("canplay", onReady);
+          video.addEventListener("loadeddata", onReady);
+          // Safety net: if nothing fires (slow network / edge case), still attempt play
+          setTimeout(function () { video.play().catch(function () {}); }, 1200);
+        }
+
+        function openVideo(e) {
+          var trigger = e && e.currentTarget;
+          var cfg = {
+            src: (trigger && trigger.dataset.videoSrc) || DEFAULT_VIDEO.src,
+            poster: (trigger && trigger.dataset.videoPoster) || DEFAULT_VIDEO.poster,
+            title: (trigger && trigger.dataset.videoTitle) || DEFAULT_VIDEO.title,
+            captions: (trigger && trigger.dataset.videoCaptions) || (((trigger && trigger.dataset.videoSrc) ? "" : DEFAULT_VIDEO.captions))
+          };
+          loadVideo(cfg);
           if (typeof dialog.showModal === "function") dialog.showModal();
           else dialog.setAttribute("open", "");
-          video.play().catch(function () {});
+          playWhenReady();
         }
         function closeVideo() {
           video.pause();
